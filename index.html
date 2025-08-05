@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Jamie's Portal</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #00ffcc;
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌀 Welcome to Jamie’s Portal 🌀</h1>
+  <p>More magic coming soon...</p>
+</body>
+</html>from zipfile import ZipFile
+import os
+
+# Create the directory structure for the project
+base_dir = "/mnt/data/secure-portal-site"
+os.makedirs(base_dir, exist_ok=True)
+
+# Define HTML for each page
+pages = {
+    "index.html": """
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Jamie's Portal</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #00ffcc;
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+    a {
+      color: #00ffcc;
+      display: block;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌀 Welcome to Jamie’s Portal 🌀</h1>
+  <p>Select your destination:</p>
+  <a href="spellgram.html">Spellgram Offerings</a>
+  <a href="landing.html">Custom Landing Page</a>
+  <a href="store.html">Online Store</a>
+  <a href="audio.html">Frequency Audio Player</a>
+  <a href="links.html">Linktree Grid</a>
+</body>
+</html>
+""",
+    "spellgram.html": """
+<!DOCTYPE html>
+<html>
+<head><title>Spellgram Offerings</title></head>
+<body style="background:black;color:cyan;text-align:center;">
+  <h1>Spellgram Offerings</h1>
+  <p>Coming soon: Custom digital spells, sigils, and ritual tools.</p>
+  <a href="index.html" style="color:cyan;">← Back to Portal</a>
+</body>
+</html>
+""",
+    "landing.html": """
+<!DOCTYPE html>
+<html>
+<head><title>Custom Landing Page</title></head>
+<body style="background:black;color:cyan;text-align:center;">
+  <h1>Custom Landing Page</h1>
+  <p>This is your energetic anchor online. We’ll keep building it.</p>
+  <a href="index.html" style="color:cyan;">← Back to Portal</a>
+</body>
+</html>
+""",
+    "store.html": """
+<!DOCTYPE html>
+<html>
+<head><title>Online Store</title></head>
+<body style="background:black;color:cyan;text-align:center;">
+  <h1>Online Store</h1>
+  <p>Soon you’ll be able to sell your spellgrams, crystals, or energy tools here.</p>
+  <a href="index.html" style="color:cyan;">← Back to Portal</a>
+</body>
+</html>
+""",
+    "audio.html": """
+<!DOCTYPE html>
+<html>
+<head><title>Frequency Audio Player</title></head>
+<body style="background:black;color:cyan;text-align:center;">
+  <h1>Frequency Audio Player</h1>
+  <p>Play healing tones and encoded tracks here soon.</p>
+  <a href="index.html" style="color:cyan;">← Back to Portal</a>
+</body>
+</html>
+""",
+    "links.html": """
+<!DOCTYPE html>
+<html>
+<head><title>Linktree Grid</title></head>
+<body style="background:black;color:cyan;text-align:center;">
+  <h1>Linktree Grid</h1>
+  <p>All your platforms in one place.</p>
+  <ul style="list-style:none;">
+    <li><a href="#" style="color:cyan;">Instagram</a></li>
+    <li><a href="#" style="color:cyan;">TikTok</a></li>
+    <li><a href="#" style="color:cyan;">Substack</a></li>
+    <li><a href="#" style="color:cyan;">Telegram</a></li>
+    <li><a href="#" style="color:cyan;">Ghost Blog</a></li>
+  </ul>
+  <a href="index.html" style="color:cyan;">← Back to Portal</a>
+</body>
+</html>
+"""
+}
+
+# Save all the files
+for filename, content in pages.items():
+    with open(os.path.join(base_dir, filename), 'w') as f:
+        f.write(content.strip())
+
+# Zip everything up for easy upload to GitHub
+zip_path = "/mnt/data/secure-portal-site-full.zip"
+with ZipFile(zip_path, 'w') as zipf:
+    for filename in pages:
+        filepath = os.path.join(base_dir, filename)
+        zipf.write(filepath, arcname=filename)
+
+zip_path
